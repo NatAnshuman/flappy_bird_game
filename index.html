@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flappy Bird</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game">
+<div id="background"></div> <!-- Background layer -->
+<div id="bird"></div> <!-- Bird layer -->
+<div id="obstacles"></div> <!-- Poles layer -->
+</div>
+<div id="start-screen" class="popup">
+<h1>Flappy Bird</h1>
+<button id="start-button">Start Game</button>
+</div>
+<div id="game-over-screen" class="popup">
+<div class="popup-content">
+<h1>Game Over!</h1>
+<p>Your Score: <span id="final-score">0</span></p>
+<p>Best Score: <span id="best-score">0</span></p>
+<p class="motivation">Keep flapping! You're getting better!</p>
+<button id="restart-button">Restart</button>
+</div>
+</div>
+<!-- Crash sound -->
+<audio id="crash-sound" src="die-101soundboards.mp3"></audio>
+<script src="script.js"></script>
+</body>
+</html>

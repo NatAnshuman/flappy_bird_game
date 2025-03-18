@@ -1,0 +1,125 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-color: #70c5ce;
+font-family: 'Arial', sans-serif;
+}
+
+#game {
+position: relative;
+width: 400px;
+height: 600px;
+border: 2px solid #000;
+overflow: hidden;
+display: none; /* Hide game initially */
+}
+
+#background {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url('https://iili.io/3osLV7j.png'); /* Background image */
+background-size: cover;
+background-position: center;
+z-index: 1; /* Background is behind everything */
+}
+
+#bird {
+position: absolute;
+top: 50%;
+left: 50px;
+width: 40px;
+height: 30px;
+background-image: url('https://iili.io/3ostwhl.png'); /* Bird image */
+background-size: cover;
+background-position: center;
+z-index: 2; /* Bird is above the background */
+}
+
+.obstacle {
+position: absolute;
+width: 50px;
+background-size: cover;
+background-position: center;
+z-index: 3; /* Poles are above the bird */
+}
+
+.popup {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: rgba(255, 255, 255, 0.95);
+padding: 30px;
+border-radius: 15px;
+text-align: center;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+z-index: 10; /* Popups are above everything */
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.popup-content {
+background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup h1 {
+margin-bottom: 20px;
+font-size: 2.5rem;
+color: #333;
+}
+
+.popup p {
+font-size: 1.2rem;
+color: #555;
+margin-bottom: 15px;
+}
+
+.popup .motivation {
+font-size: 1rem;
+color: #777;
+font-style: italic;
+margin-bottom: 25px;
+}
+
+.popup button {
+padding: 10px 30px;
+font-size: 1.2rem;
+cursor: pointer;
+border: none;
+background-color: #70c5ce;
+color: white;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+background-color: #5aa5b5;
+}
+
+#game-over-screen {
+display: none; /* Hide game over screen initially */
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translate(-50%, -60%);
+}
+to {
+opacity: 1;
+transform: translate(-50%, -50%);
+}
+}
