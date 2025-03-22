@@ -64,7 +64,7 @@ function applyGravity() {
 // Make the bird jump
 function jump() {
   if (isGameOver) return;
-  birdVelocity = -6; // Adjust jump strength
+  birdVelocity = -5; // Adjust jump strength
 }
 document.addEventListener("click", jump); // Mouse click for desktop
 document.addEventListener("touchstart", jump); // Touch for mobile
