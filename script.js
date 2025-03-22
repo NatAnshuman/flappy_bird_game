@@ -66,6 +66,8 @@ function jump() {
   if (isGameOver) return;
   birdVelocity = -8; // Adjust jump strength
 }
+document.addEventListener("click", jump); // Mouse click for desktop
+document.addEventListener("touchstart", jump); // Touch for mobile
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") jump();
