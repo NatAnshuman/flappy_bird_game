@@ -7,25 +7,25 @@ const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 const finalScore = document.getElementById("final-score");
 const bestScore = document.getElementById("best-score");
-const crashSound = document.getElementById("crash-sound"); // Crash sound element
+const crashSound = document.getElementById("crash-sound"); 
 
 let birdTop = 250;
 let birdVelocity = 0;
 let gravity = 0.5;
 let isGameOver = false;
 let score = 0;
-let best = 0; // Track the best score
+let best = 0;
 let gameInterval;
 let obstacleInterval;
 
-// Start the game
+// Game start
 startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
   game.style.display = "block";
   startGame();
 });
 
-// Restart the game
+// Game restart
 restartButton.addEventListener("click", () => {
   gameOverScreen.style.display = "none";
   game.style.display = "block";
@@ -33,7 +33,7 @@ restartButton.addEventListener("click", () => {
 });
 
 function startGame() {
-  // Reset game state
+  // Reset game 
   isGameOver = false;
   birdTop = 250;
   birdVelocity = 0;
@@ -41,19 +41,19 @@ function startGame() {
   obstacles.innerHTML = "";
   bird.style.top = birdTop + "px";
 
-  // Start game loops
+  // Start game loop
   applyGravity();
   gameInterval = setInterval(createObstacle, 2000);
 }
 
-// Make the bird fall
+// gravity thing
 function applyGravity() {
   if (isGameOver) return;
   birdVelocity += gravity;
   birdTop += birdVelocity;
   bird.style.top = birdTop + "px";
 
-  // Check for game over (bird hits the ground or flies too high)
+  //  game over when bird hits the ground or flies too high
   if (birdTop > 560 || birdTop < 0) {
     gameOver();
   }
@@ -61,13 +61,13 @@ function applyGravity() {
   requestAnimationFrame(applyGravity);
 }
 
-// Make the bird jump
+// Jumping thing
 function jump() {
   if (isGameOver) return;
-  birdVelocity = -5; // Adjust jump strength
+  birdVelocity = -5; 
 }
-document.addEventListener("click", jump); // Mouse click for desktop
-document.addEventListener("touchstart", jump); // Touch for mobile
+document.addEventListener("click", jump); 
+document.addEventListener("touchstart", jump); 
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") jump();
@@ -77,28 +77,28 @@ function createObstacle() {
   if (isGameOver) return;
   const obstacle = document.createElement("div");
   obstacle.classList.add("obstacle");
-  const minGap = 150; // Minimum gap between poles
-  const maxGap = 230; // Maximum gap between poles
-  const gap = Math.random() * (maxGap - minGap) + minGap; // Randomize gap size
-  const maxGapPosition = 600 - gap; // Maximum vertical position for the gap
-  const gapPosition = Math.random() * maxGapPosition; // Randomize gap position
+  const minGap = 150; 
+  const maxGap = 230; 
+  const gap = Math.random() * (maxGap - minGap) + minGap; 
+  const maxGapPosition = 600 - gap; 
+  const gapPosition = Math.random() * maxGapPosition; 
 
-  // Fixed pole height (same for both poles)
-  const poleHeight = 400; // Set a fixed height for both poles
+  // Fixed pole height 
+  const poleHeight = 400; 
 
   // Top obstacle
   const topObstacle = obstacle.cloneNode();
-  topObstacle.style.height = `${poleHeight}px`; // Fixed height for the top pole
-  topObstacle.style.top = `${gapPosition - poleHeight}px`; // Position based on gap position
-  topObstacle.style.backgroundImage = "url('https://iili.io/3oyssou.png')"; /* New upper pole image */
+  topObstacle.style.height = `${poleHeight}px`; 
+  topObstacle.style.top = `${gapPosition - poleHeight}px`;
+  topObstacle.style.backgroundImage = "url('https://iili.io/3oyssou.png')";  
  
   obstacles.appendChild(topObstacle);
 
   // Bottom obstacle
   const bottomObstacle = obstacle.cloneNode();
-  bottomObstacle.style.height = `${poleHeight}px`; // Fixed height for the bottom pole
-  bottomObstacle.style.top = `${gapPosition + gap}px`; // Position based on gap position
-  bottomObstacle.style.backgroundImage = "url('https://iili.io/3oysPte.png')"; /* New lower pole image */
+  bottomObstacle.style.height = `${poleHeight}px`; 
+  bottomObstacle.style.top = `${gapPosition + gap}px`; 
+  bottomObstacle.style.backgroundImage = "url('https://iili.io/3oysPte.png')"; 
   obstacles.appendChild(bottomObstacle);
 
   // Move obstacles
@@ -110,19 +110,19 @@ function createObstacle() {
     bottomObstacle.style.left = `${obstacleLeft}px`;
 
     // Bird dimensions
-    const birdBottom = birdTop + 40; // Bird height is 40px
-    const birdRight = 50 + 40; // Bird's horizontal position (left + width)
+    const birdBottom = birdTop + 40; // height
+    const birdRight = 50 + 40; // width
 
-    // Check for collision
+    // collision detectiom
     if (
-      obstacleLeft < birdRight && // Pole is within the bird's horizontal range
-      obstacleLeft + 60 > 50 && // Pole is not too far to the left
+      obstacleLeft < birdRight && // within the bird's horizontal range
+      obstacleLeft + 60 > 50 && // Pole not too far to the left
       (birdTop < gapPosition || birdBottom > gapPosition + gap) // Bird collides with top or bottom pole
     ) {
       gameOver();
     }
 
-    // Increase score when obstacle passes
+    // score increase
     if (obstacleLeft === 50) {
       score++;
     }
@@ -137,25 +137,25 @@ function createObstacle() {
   moveObstacle();
 }
 
-// Game over function
+// Game over 
 function gameOver() {
   isGameOver = true;
   clearInterval(gameInterval);
 
-  // Play crash sound
+
   crashSound.play();
 
-  // Update best score
+  // best score
   if (score > best) {
     best = score;
     bestScore.textContent = best;
   }
 
-  // Show game over screen
+  // game over screen
   game.style.display = "none";
   gameOverScreen.style.display = "block";
   finalScore.textContent = score;
 }
 
-// Start the game on page load
+// front page flex with start option
 startScreen.style.display = "block";
